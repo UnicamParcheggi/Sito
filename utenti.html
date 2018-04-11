@@ -1,0 +1,168 @@
+<div class="container-fluid">
+    <div class="row text-center">
+        <div class="titoloAdmin">Amministrazione utenti</div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6 text-center">
+            <div class="panel-group pannelletti">
+
+                <div class="panel panel-default pannello" ng-repeat="utente in Autisti" style="margin-top:20px;">
+
+                    <div class="panel-heading" style="background-color: #333;color: white;padding-bottom: 20px;">
+
+                        <label>ID:</label> {{ utente.id }}
+
+                        <button id="elimina{{ $index }}" type="button" class="btn pull-right buttonUser" ng-click="EliminaUtente($index)">
+                            <span class="glyphicon  glyphicon-trash"></span>
+                        </button>
+
+                        <button id="modifica{{ $index }}" type="button" class="btn pull-right buttonUser" ng-click="ModificaUtente($index, true)">
+                            <span class="glyphicon  glyphicon-pencil"></span>
+                        </button>
+
+                        <button id="btnPrenotazioni{{ $index }}" type="button" class="btn pull-right buttonUser" ng-click="ModalPrenotazioni($index)">
+                            <span class="glyphicon glyphicon-list-alt"></span>
+                        </button>
+
+                        <button id="annulla{{ $index }}" type="button" class="btn pull-right buttonUser" ng-click="ModificaUtente($index, false)"
+                            style="display: none;">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+
+                        <button id="salva{{ $index }}" type="button" class="btn pull-right buttonUser" ng-click="SalvaUtente($index)" style="display: none;">
+                            <span class="glyphicon  glyphicon-ok"></span>
+                        </button>
+                    </div>
+
+                    <div class="panel-body corpoPannello" style="padding-top: 5px;">
+                        <h4 class="infoUtente">Info utente:</h4>
+                        <ul>
+                            <li>
+                                <span class="subInfoUtente">username:</span>
+                                <input type="text" id="username{{ $index }}" value="{{ utente.username }}" class="formUtente" maxlength="15" disabled required/>
+                            </li>
+                            <li>
+                                <span class="subInfoUtente">email:</span>
+                                <input type="email" id="email{{ $index }}" value="{{ utente.email }}" class="formUtente" maxlength="60" disabled required/>
+                            </li>
+                            <li>
+                                <span class="subInfoUtente">nome:</span>
+                                <input type="text" id="nome{{ $index}}" value="{{ utente.nome }}" class=" formUtente" maxlength="30" disabled required/>
+                            </li>
+                            <li>
+                                <span class="subInfoUtente">cognome:</span>
+                                <input type="text" id="cognome{{ $index }}" value="{{ utente.cognome }}" class=" formUtente" maxlength="30" disabled required/>
+                            </li>
+                            <li>
+                                <span class="subInfoUtente">data nascita:</span>
+                                <input type="text" id='dataDiNascita{{ $index }}' value="{{ utente.dataDiNascita }}" class=" formUtente" disabled required/>
+                            </li>
+                            <li>
+                                <span class="subInfoUtente">telefono:</span>
+                                <input type="tel" id="telefono{{ $index }}" value="{{ utente.telefono }}" class=" formUtente" disabled required/>
+                            </li>
+                            <li>
+                                <div class="form-check">
+                                    <span class="subInfoUtente">abilitato:</span>
+                                    <input type="checkbox" class="form-check-input" ng-checked="{{ utente.abilitato }}" style="width: 20px; height: 20px;margin-left: 80px;"
+                                        id="abilitato{{ $index }}" disabled/>
+                                </div>
+                            </li>
+                        </ul>
+                        <h4 class="infoUtente">Info carta di credito:</h4>
+                        <ul>
+                            <li>
+                                <span class="subInfoUtente">numero carta:</span>
+                                <input type="text" id="numero_carta{{ $index }}" value="{{ utente.carta_di_credito.numero_carta }}" class=" formUtente" disabled
+                                    required/>
+                            </li>
+                            <li>
+                                <span class="subInfoUtente">data scadenza:</span>
+                                <input type="text" id="dataDiScadenza{{ $index }}" value="{{ utente.carta_di_credito.dataDiScadenza }}" class=" formUtente"
+                                    disabled required/>
+                            </li>
+                            <li>
+                                <span class="subInfoUtente">pin:</span>
+                                <input type="text" id="pin{{ $index }}" value="{{ utente.carta_di_credito.pin}}" class=" formUtente" disabled required/>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Modal prenotazioni utente -->
+                <div class="modal fade" id="prenotazioniModalLong" tabindex="-1" role="dialog" aria-labelledby="prenotazioniModalLongTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 id="modalNomeUser" class="modalInfoUtente" id="prenotazioniModalLongTitle">Prenotazioni in corso di </h5>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="panel panel-default pannello" ng-repeat="prenotazione in PrenotazioniUtente" style="margin-top:20px;">
+
+                                    <div class="panel-heading" style="background-color: #333;color: white;padding-bottom: 20px;">
+
+                                        <label>ID:</label> {{ prenotazione.idPrenotazione }}
+
+
+                                        <button id="resetCode{{ $index }}" type="button" class="btn pull-right buttonUser" ng-click="resetCode($index)">
+                                            <span class="glyphicon  glyphicon-qrcode"></span>
+                                        </button>
+                                        <h6 class="pull-right">Reset Codice</h6>
+                                    </div>
+
+                                    <div class="panel-body corpoPannello" style="padding-top: 5px; text-align: left;">
+                                        <h4 class="infoUtente">Info prenotazione:</h4>
+                                        <ul>
+                                            <li>
+                                                <span class="subInfoPrenotazione">Luogo:</span>
+                                                <span>{{ prenotazione.indirizzo }}</span>
+                                            </li>
+                                            <li>
+                                                <span class="subInfoPrenotazione">Data scadenza:</span>
+                                                <span>{{ prenotazione.data }}</span>
+                                            </li>
+                                            <li>
+                                                <span class="subInfoPrenotazione">Tipo posto:</span>
+                                                <span>{{ prenotazione.nomePosto }}</span>
+                                            </li>
+                                            <li>
+                                                <span class="subInfoPrenotazione">Codice:</span>
+                                                <span>{{ prenotazione.codice }}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- bottoni pagine -->
+                <div class="panelBottoni">
+                    <ul class="pager">
+                        <li ng-click="Previous()" button type="button" class="btn btn-link">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </li>
+                        <li>
+                            <strong>{{ page }}</strong>
+                        </li>
+                        <li ng-click="Next()" button type="button" class="btn btn-link">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-3">
+            </div>
+        </div>
+    </div>

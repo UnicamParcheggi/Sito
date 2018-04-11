@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6 text-center">
+            <div class="titolo">I nostri parcheggi</div>
+            <div class="panel-group">
+
+                <div class="panel panel-default pannello" ng-repeat="parcheggio in Parcheggi" style="margin-top:20px;">
+
+                    <div class="panel-heading" style="background-color: #333;color: white;">
+                        <h3>{{ parcheggio.indirizzo.via }} {{ parcheggio.indirizzo.numero_civico }} {{ parcheggio.indirizzo.cap
+                            }} {{ parcheggio.indirizzo.citta }} ({{ parcheggio.indirizzo.provincia }})</h3>
+                    </div>
+
+                    <div class="panel-body corpoPannello" style="text-align: left;">
+                        <div class="col-md-3">
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <h4>Posti liberi attuali:</h4>
+                            <ul>
+                                <li>Posti auto: {{ parcheggio.nPostiMacchina }}</li>
+                                <li>Posti moto: {{ parcheggio.nPostiMoto }}</li>
+                                <li>Posti disabile: {{ parcheggio.nPostiDisabile }}</li>
+                                <li>Posti camper: {{ parcheggio.nPostiCamper }}</li>
+                                <li>Posti autobus: {{ parcheggio.nPostiAutobus }}</li>
+                            </ul>
+                            <h4>Tariffe orarie:</h4>
+                            <ul>
+                                <li>Lavorativi {{ parcheggio.tariffaOrariaLavorativi | number:2}}€</li>
+                                <li>Festivi {{ parcheggio.tariffaOrariaFestivi | number:2}}€</li>
+
+                            </ul>
+                        </div>
+
+                        <div class="col-md-3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+        </div>
+    </div>
+</div>

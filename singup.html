@@ -1,0 +1,117 @@
+<div class="container-fluid">
+        <div class="row text-center">
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-6 ">
+                <p class="titolo" style="margin-top: 10px;">Registrazione</p>
+            </div>
+            <div class="col-md-3">
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-primary pannello">
+                    <div class="panel-heading text-center" style="background-color: #333;">
+                        Inserisci qui i tuoi dati per la registrazione
+                    </div>
+                    <div class="panel-body corpoPannello">
+                        <!--Registration form-->
+                        <form class="form-horizontal" ng-model="formReg" name="formReg">
+                            <div style="align-content: center;">
+                                <!--username-->
+                                <div class="form-group">
+                                    <label for="nome">Username:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-user"></i>
+                                        </span>
+                                        <input type="text" class="form-control" maxlength="15" name="username" ng-model="username" placeholder="Username" required/>
+                                    </div>
+                                    <span style="color:red" ng-show="formReg.username.$dirty && formReg.username.$invalid">
+                                        Campo obbligatorio.
+                                    </span>
+                                </div>
+                                <!--password-->
+                                <div class="form-group">
+                                    <label for="psw">Password:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-lock"></i>
+                                        </span>
+                                        <input type="password" name="password" maxlength="16" class="form-control" placeholder="Password" ng-model="password" required/>
+                                    </div>
+                                    <span style="color:red" ng-show="formReg.password.$dirty && formReg.password.$invalid">
+                                        Campo obbligatorio.
+                                    </span>
+                                </div>
+    
+                                <!--email-->
+                                <div class="form-group">
+                                    <label for="email">Email:</label>
+                                    <input type="email" name="email" maxlength="60" class="form-control" placeholder="example@domain.com" ng-model="email" required/>
+                                    <span style="color:red" ng-show="formReg.email.$dirty && formReg.email.$invalid">
+                                        Campo obbligatorio.
+                                    </span>
+                                </div>
+    
+                                <!--nome-->
+                                <div class="form-group">
+                                    <label for="first">Nome:</label>
+                                    <input type="text" name="nome" maxlength="30" class="form-control" placeholder="Nome" ng-model="nome" required/>
+                                    <span style="color:red" ng-show="formReg.nome.$dirty && formReg.nome.$invalid">
+                                        Campo obbligatorio.
+                                    </span>
+                                </div>
+    
+                                <!--cognome-->
+                                <div class="form-group">
+                                    <label for="last">Cognome:</label>
+                                    <input type="text" name="cognome" maxlength="30" class="form-control" placeholder="Cognome" ng-model="cognome" required/>
+                                    <span style="color:red" ng-show="formReg.cognome.$dirty && formReg.cognome.$invalid">
+                                        Campo obbligatorio.
+                                    </span>
+                                </div>
+    
+                                <!--data_di_nascita-->
+                                <div class="form-group">
+                                    <label for="ddn">Data di nascita:</label>
+                                    <div class='input-group date' id='datanascita'>
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time"></span>
+                                        </span>
+                                        <input type="text" name="datanascita" id='nascita' class="form-control" ng-model="datanascita" required/>
+                                    </div>
+                                    <span style="color:red" ng-show="formReg.datanascita.$dirty && formReg.datanascita.$invalid">
+                                        Campo obbligatorio.
+                                    </span>
+                                </div>
+    
+                                <!--telefono-->
+                                <div class="form-group">
+                                    <label for="tel">Telefono:</label>
+                                    <form>
+                                        <input type="text" name="telefono" class="form-control" placeholder="+39 xxx xxxxxxx" ng-model="telefono" required/>
+                                    </form>
+                                    <span style="color:red" ng-show="formReg.telefono.$dirty && formReg.telefono.$invalid">
+                                        Inserire solo numeri (campo obbligatorio).
+                                    </span>
+                                </div>
+    
+                                <!--submit button-->
+                                <div class="form-group">
+                                    <button type="submit" ng-click="registra()" ng-disabled="formReg.username.$invalid || formReg.password.$invalid || formReg.email.$invalid || formReg.nome.$invalid || formReg.cognome.$invalid || formReg.telefono.$invalid"
+                                        class="btn btn-primary center-block">Registrati</button>
+                                </div>
+                            </div>
+    
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+            </div>
+        </div>
+    </div>
